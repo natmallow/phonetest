@@ -113,3 +113,8 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+.menuList div{ float:left;padding-right:8px;}
+.menuList div a{text-decoration:none;}
+
+
