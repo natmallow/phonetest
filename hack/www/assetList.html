@@ -4,17 +4,52 @@
         <meta charset="utf-8">
         <title></title>
         <meta name="description" content="">
-        <link rel="stylesheet" href="css/index.css">
+         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/dist/css/bootstrap.min.css" />
+        <style type="text/css">
+        .row div{
+            padding-top:10px;
+        }
+
+        .Absolute-Center {
+          margin: auto;
+          position: absolute;
+          top: 0; left: 0; bottom: 0; right: 0;
+        }
+
+        .Absolute-Center.is-Responsive {
+          width: 50%; 
+          height: 50%;
+        }
+
+        div.button-width button{
+            width:250px;
+            margin:15px;
+        }
+        </style>
     </head>
     <body>
-        <div class="menuList">
-            <div><a href="signIn.html">Sign In</a></div>
-            <div><a href="assetList.html">Asset List</a></div>
-            <div><a href="assetMap.html">Map view</a></div>
-        </div>
+        <div class="container">
+            <div class="row menuList">
+                <!-- <div><a href="signIn.html">Sign In</a></div>
+                <div><a href="assetList.html">Asset List</a></div>
+                <div><a href="map.html">Map view</a></div> -->
+                <div><a href="map.html">Map view</a></div>
+                <div><a href="signIn.html">Log out</a></div>
+            </div>
+            <!-- Add your site or application content here -->
 
-        <div style="width:80%">
-            <p> Asset List View </p>
-        </div>
+          <div class="row">
+            <div class="text-capitalize">Property Address:</div>
+            <div class="text-capitalize">Photos needed :</div>
+            <div class="Absolute-Center is-Responsive button-width">
+                <button type="button" class="btn btn-success">Left</button>
+                <button type="button" class="btn btn-warning">Right</button>
+                <button type="button" class="btn btn-warning">Front</button>
+                <button type="button" class="btn btn-danger">Back</button>
+            </div>
+
+          </div>
+      </div>
     </body>
 </html>
