@@ -1,2 +1,0 @@
-# phonetest
-repo for yeoman
