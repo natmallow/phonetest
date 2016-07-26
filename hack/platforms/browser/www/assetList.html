@@ -4,17 +4,268 @@
         <meta charset="utf-8">
         <title></title>
         <meta name="description" content="">
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/dist/css/bootstrap.min.css" />
+        <style type="text/css">
+            .row div{
+                padding-top:10px;
+            }
+
+            .Absolute-Center {
+                margin: auto;
+                /*position: absolute;*/
+                top: 0; left: 0; bottom: 0; right: 0;
+            }
+
+            .Absolute-Center.is-Responsive {
+                width: 50%; 
+                height: 50%;
+            }
+
+            div.button-width button{
+                max-width: 66%;
+                min-width: 66%;
+                margin:15px 15px 15px 0px;
+            }
+
+
+            .section-container {
+                margin-top: 20px; 
+                clear: right;
+                border: 2px #757d82 solid;
+            }
+
+            div.delete-able {                
+                clear: right;
+                position: relative;
+                padding-top: 6px;
+
+            }
+
+            div.delete-able img {
+                max-width: 80%;
+                min-width: 80%;
+                float: right;
+            }
+
+            div.delete-able span {
+                min-width: 20%;
+                text-align: center;
+                padding-top: 120px;
+            }
+
+            .glyphicon-remove-sign {
+                font-size: 5.2em;
+                color: #CC3300;
+            }
+
+            .glyphicon-camera {
+                font-size: 5.2em;
+                color: #dce3e8;
+            }
+
+            .glyphicon-upload {
+                font-size: 5.2em;
+                color: #dce3e8;
+            }            
+
+
+            .btn {
+                font-size: 5.0em;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+
+
+            .section-header {
+                background: #dce3e8;
+                background-image: -webkit-linear-gradient(top, #dce3e8, #757d82);
+                background-image: -moz-linear-gradient(top, #dce3e8, #757d82);
+                background-image: -ms-linear-gradient(top, #dce3e8, #757d82);
+                background-image: -o-linear-gradient(top, #dce3e8, #757d82);
+                background-image: linear-gradient(to bottom, #dce3e8, #757d82);
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 3.0em;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+            }
+
+
+            .btn-containter {
+                -webkit-border-radius: 0;
+                -moz-border-radius: 0;
+                border-radius: 0px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 28px;
+                background: #738076;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+                text-align: center;
+                clear: right;
+            }
+
+            .end-cap-bottom {
+                margin: 30px 0;
+
+            }
+
+            dl.title-container {
+
+            }
+            dl.title-container dt {
+                font-size: 2.4em;
+                font-weight: bold;
+            }
+            dl.title-container dd {
+                font-size: 2.2em;          
+            }    
+
+        </style>
+                <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" charset="utf-8">
+
+            var pictureSource;   // picture source
+            var destinationType; // sets the format of returned value
+
+            // Wait for device API libraries to load
+            //
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            // device APIs are available
+            //
+            function onDeviceReady() {
+                pictureSource = navigator.camera.PictureSourceType;
+                destinationType = navigator.camera.DestinationType;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoDataSuccess(imageData) {
+                // Uncomment to view the base64-encoded image data
+                // console.log(imageData);
+
+                // Get image handle
+                //
+                var smallImage = document.getElementById('smallImage');
+
+                // Unhide image elements
+                //
+                smallImage.style.display = 'block';
+
+                // Show the captured photo
+                // The in-line CSS rules are used to resize the image
+                //
+                smallImage.src = "data:image/jpeg;base64," + imageData;
+            }
+
+            // Called when a photo is successfully retrieved
+            //
+            function onPhotoURISuccess(imageURI) {
+                // Uncomment to view the image file URI
+                // console.log(imageURI);
+
+                // Get image handle
+                //
+                var largeImage = document.getElementById('largeImage');
+
+                // Unhide image elements
+                //
+                largeImage.style.display = 'block';
+
+                // Show the captured photo
+                // The in-line CSS rules are used to resize the image
+                //
+
+                //largeImage.src = imageURI;
+                largeImage.src = "data:image/jpeg;base64," + imageURI;
+
+            }
+
+            // A button will call this function
+            //
+            function capturePhoto() {
+                // Take picture using device camera and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 50,
+                    destinationType: destinationType.DATA_URL});
+            }
+
+            // A button will call this function
+            //
+            function capturePhotoEdit() {
+                // Take picture using device camera, allow edit, and retrieve image as base64-encoded string
+                navigator.camera.getPicture(onPhotoDataSuccess, onFail, {quality: 20, allowEdit: true,
+                    destinationType: destinationType.DATA_URL});
+            }
+
+            // A button will call this function
+            //
+            function getPhoto(source) {
+                // Retrieve image file location from specified source
+
+                navigator.camera.getPicture(onPhotoURISuccess, onFail, {quality: 50,
+                    destinationType: destinationType.FILE_URI,
+                    sourceType: source});
+            }
+
+            // Called if something bad happens.
+            //
+            function onFail(message) {
+                alert('Failed because: ' + message);
+            }
+
+        </script>
     </head>
     <body>
-        <div class="menuList">
-            <div><a href="signIn.html">Sign In</a></div>
-            <div><a href="assetList.html">Asset List</a></div>
-            <div><a href="assetMap.html">Map view</a></div>
-        </div>
+        <div class="container">
+            <div class="row menuList">
+                <!-- <div><a href="signIn.html">Sign In</a></div>
+                <div><a href="assetList.html">Asset List</a></div>
+                <div><a href="map.html">Map view</a></div> -->
+                <div><a href="map.html">Map view</a></div>
+                <div><a href="signIn.html">Log out</a></div>
+            </div>
+            <!-- Add your site or application content here -->
 
-        <div style="width:80%">
-            <p> Asset List View </p>
+            <div class="row">
+                <dl class="title-container">
+                    <dt>Property Address:</dt>
+                    <dd>1 mauchly,irvine,CA 92618</dd>
+                </dl>
+                <div class="text-capitalize"><h1><strong>Photos</strong></h1></div>
+            </div>
+
+            <div class="is-Responsive button-width">
+                <div class="section-container">
+                    <div class="section-header"> Front </div>
+                    <div class="delete-able"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><img src="img/left_1.png"></div> 
+                    <div class="delete-able"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span><img src="img/left_2.png"></div>
+                    <div class="btn-containter"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></div> 
+                </div>
+                <div class="section-container">
+                    <div class="section-header"> Outside-Left </div>
+                    
+                        <button onclick="capturePhoto();">Capture Photo</button> <br>
+                        <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
+                        <button onclick="getPhoto(pictureSource.PHOTOLIBRARY);">From Photo Library</button><br>
+                        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+                        <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
+                        <img style="display:none;width:60px;height:60px;" id="largeImage" src="" />
+                    
+                    <div class="btn-containter"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></div> 
+                </div>
+                <div class="section-container">
+                    <div class="section-header"> Outside-Back </div>
+                    <div class="btn-containter"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></div> 
+                </div>       
+                <div class="section-container">
+                    <div class="section-header"> Outside-Right </div>
+                    <div class="btn-containter"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span></div> 
+                </div>
+                <div class="section-container end-cap-bottom">
+                    <div class="btn-containter"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span></div> 
+                </div>                
+            </div>
         </div>
     </body>
 </html>
